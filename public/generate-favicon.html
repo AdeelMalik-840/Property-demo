@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Harbor Point Favicon</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .favicon-preview { 
+            width: 32px; 
+            height: 32px; 
+            background: black; 
+            border-radius: 50%; 
+            display: inline-block;
+            margin: 10px;
+        }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Harbor Point Favicon Generator</h1>
+    <p>This creates a 32x32 favicon with black circular background and Harbor Point logo.</p>
+    
+    <canvas id="faviconCanvas" width="32" height="32"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('faviconCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Draw black circle background
+        ctx.fillStyle = '#000000';
+        ctx.beginPath();
+        ctx.arc(16, 16, 16, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Create a temporary image element to load the logo
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = function() {
+            // Draw the logo in the center
+            ctx.drawImage(img, 4, 4, 24, 24);
+            
+            // Convert canvas to favicon
+            const link = document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = canvas.toDataURL('image/x-icon');
+            document.getElementsByTagName('head')[0].appendChild(link);
+        };
+        img.src = '/images/logo-harbor-point.png';
+    </script>
+</body>
+</html>
