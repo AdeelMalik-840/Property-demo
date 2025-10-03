@@ -1,2 +1,2 @@
 # Property-demo
-This isa property demo website
+This is a property demo website
